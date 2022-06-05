@@ -1,0 +1,16 @@
+Command Line Args: Namespace(config_file='./configs/C10_WRN28x1-BN-ReLU/C10_WRN28x1-BN-ReLU_MIMO2.yaml', weight_file='./outputs/C10_WRN28x1-BN-ReLU/MIMO2_20211017/best_acc1.pth.tar', opts=[])
+
+Standard metrics on test examples:
+Label         ACC     NLL     ECE     ENT     KLD
+---------  ------  ------  ------  ------  ------
+Member #0  0.9057  0.3040  0.0309  0.1840  0.0000
+Member #1  0.8914  0.3347  0.0277  0.2354  0.0000
+Ensemble   0.9155  0.2601  0.0098  0.2547  0.2718
+
+Calibrated metrics on test examples:
+# Ens         ACC     NLL     ECE     ENT      TS
+---------  ------  ------  ------  ------  ------
+Member #0  0.9057  0.2868  0.0083  0.2962  1.3477
+Member #1  0.8914  0.3239  0.0093  0.3120  1.2102
+Ensemble   0.9155  0.2601  0.0102  0.2572  1.0070
+

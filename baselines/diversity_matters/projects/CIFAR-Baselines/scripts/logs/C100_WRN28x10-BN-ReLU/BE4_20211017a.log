@@ -1,0 +1,20 @@
+Command Line Args: Namespace(config_file='./configs/C100_WRN28x10-BN-ReLU/C100_WRN28x10-BN-ReLU_BE4.yaml', weight_file='./outputs/C100_WRN28x10-BN-ReLU/BE4_20211017a/best_acc1.pth.tar', opts=[])
+
+Standard metrics on test examples:
+Label         ACC     NLL     ECE     ENT     KLD
+---------  ------  ------  ------  ------  ------
+Member #0  0.8057  0.8404  0.0801  0.4289  0.0000
+Member #1  0.8041  0.8495  0.0819  0.4266  0.0000
+Member #2  0.8039  0.8507  0.0798  0.4358  0.0000
+Member #3  0.8075  0.8405  0.0780  0.4282  0.0000
+Ensemble   0.8114  0.7872  0.0641  0.4615  0.0939
+
+Calibrated metrics on test examples:
+# Ens         ACC     NLL     ECE     ENT      TS
+---------  ------  ------  ------  ------  ------
+Member #0  0.8057  0.7746  0.0334  0.8053  1.3906
+Member #1  0.8041  0.7803  0.0340  0.8185  1.4078
+Member #2  0.8039  0.7839  0.0355  0.8276  1.4078
+Member #3  0.8075  0.7742  0.0367  0.8106  1.3992
+Ensemble   0.8114  0.7444  0.0318  0.7811  1.3266
+

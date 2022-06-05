@@ -1,0 +1,6 @@
+numpy
+torch
+torchvision
+torch_testing
+matplotlib
+tikzplotlib

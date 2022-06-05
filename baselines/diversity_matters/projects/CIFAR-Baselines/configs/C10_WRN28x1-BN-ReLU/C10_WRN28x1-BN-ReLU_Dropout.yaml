@@ -1,0 +1,72 @@
+DATASETS:
+  NAME: "CIFAR10"
+  # SEED: 42 (unused)
+  CIFAR:
+    SHUFFLE_INDICES: False
+    TRAIN_INDICES: [0, 45000,]
+    VALID_INDICES: [45000, 50000,]
+    DATA_AUGMENTATION: "STANDARD_TRAIN_TRANSFORM"
+
+DATALOADER:
+  NUM_WORKERS: 0
+  PIN_MEMORY: False
+
+MODEL:
+  DROPOUT:
+    ENABLED: True
+    DROP_PROBABILITY: 0.01
+  META_ARCHITECTURE:
+    NAME: "ClassificationModelBase"
+  PIXEL_MEAN: [0.4915, 0.4821, 0.4464,]
+  PIXEL_STD: [0.2472, 0.2437, 0.2617,]
+  BACKBONE:
+    NAME: "build_preresnet_backbone"
+    RESNET:
+      CHANNELS: 3
+      IN_PLANES: 16
+      FIRST_BLOCK:
+        USE_NORM_LAYER: False
+        USE_ACTIVATION: False
+        USE_POOL_LAYER: False
+        CONV_KSP: [3, 1, 1,]
+        # POOL_KSP: [3, 2, 1,] (unused)
+      BLOCK: "BasicBlock"
+      SHORTCUT: "ProjectionShortcut"
+      NUM_BLOCKS: [4, 4, 4,]
+      WIDEN_FACTOR: 1
+      CONV_LAYERS: "Conv2d_Dropout"
+      NORM_LAYERS: "BatchNorm2d"
+      ACTIVATIONS: "ReLU"
+  CLASSIFIER:
+    NAME: "build_softmax_classifier"
+    SOFTMAX_CLASSIFIER:
+      FEATURE_DIM: 64
+      NUM_CLASSES: 10
+      NUM_HEADS: 1
+      USE_BIAS: True
+      LINEAR_LAYERS: "Linear_Dropout"
+
+SOLVER:
+  NUM_EPOCHS: 500
+  BATCH_SIZE: 128
+  VALID_FREQUENCY: 20
+  VALID_FINALE: 20
+  OPTIMIZER:
+    NAME: "SGD"
+    SGD:
+      BASE_LR: 0.1
+      WEIGHT_DECAY: 0.0005
+      MOMENTUM: 0.9
+      NESTEROV: True
+  SCHEDULER:
+    NAME: "WarmupSimpleCosineLR"
+    WARMUP_SIMPLE_COSINE_LR:
+      WARMUP_EPOCHS: 5
+      WARMUP_METHOD: "linear"
+      WARMUP_FACTOR: 0.01
+
+NUM_GPUS: 1
+CUDNN_BENCHMARK: False
+CUDNN_DETERMINISTIC: False
+SEED: -1
+OUTPUT_DIR: "./outputs/C10_WRN28x1-BN-ReLU/Dropout/"

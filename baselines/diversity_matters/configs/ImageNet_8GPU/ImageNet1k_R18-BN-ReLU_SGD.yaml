@@ -1,0 +1,69 @@
+DATASETS:
+  NAME: "ImageNet1k"
+  SEED: 42
+  IMAGENET:
+    SHUFFLE_INDICES: True
+    TRAIN_INDICES: [0, 1231167,]
+    VALID_INDICES: [1231167, 1281167,]
+    DATA_AUGMENTATION: "STANDARD_TRAIN_TRANSFORM"
+
+DATALOADER:
+  NUM_WORKERS: 8
+  PIN_MEMORY: False
+
+MODEL:
+  META_ARCHITECTURE:
+    NAME: "BasicClassificationModel"
+  PIXEL_MEAN: [0.485, 0.456, 0.406,]
+  PIXEL_STD: [0.229, 0.224, 0.225,]
+  BACKBONE:
+    NAME: "build_resnet_backbone"
+    RESNET:
+      CHANNELS: 3
+      IN_PLANES: 64
+      FIRST_BLOCK:
+        USE_NORM_LAYER: True
+        USE_ACTIVATION: True
+        USE_POOL_LAYER: True
+        CONV_KSP: [7, 2, 3,]
+        POOL_KSP: [3, 2, 1,]
+      BLOCK: "BasicBlock"
+      SHORTCUT: "ProjectionShortcut"
+      NUM_BLOCKS: [2, 2, 2, 2,]
+      WIDEN_FACTOR: 1
+      CONV_LAYERS: "Conv2d"
+      NORM_LAYERS: "BatchNorm2d"
+      ACTIVATIONS: "ReLU"
+  CLASSIFIER:
+    NAME: "build_softmax_classifier"
+    SOFTMAX_CLASSIFIER:
+      FEATURE_DIM: 512
+      NUM_CLASSES: 1000
+      NUM_HEADS: 1
+      USE_BIAS: True
+      LINEAR_LAYERS: "Linear"
+
+SOLVER:
+  NUM_EPOCHS: 100
+  BATCH_SIZE: 256
+  VALID_FREQUENCY: 10
+  VALID_FINALE: 10
+  OPTIMIZER:
+    NAME: "SGD"
+    SGD:
+      BASE_LR: 0.1
+      WEIGHT_DECAY: 0.0001
+      MOMENTUM: 0.9
+      NESTEROV: True
+  SCHEDULER:
+    NAME: "WarmupSimpleCosineLR"
+    WARMUP_SIMPLE_COSINE_LR:
+      WARMUP_EPOCHS: 5
+      WARMUP_METHOD: "linear"
+      WARMUP_FACTOR: 0.01
+
+NUM_GPUS: 8
+CUDNN_BENCHMARK: False
+CUDNN_DETERMINISTIC: False
+SEED: -1
+OUTPUT_DIR: "./outputs/ImageNet_8GPU/ImageNet1k_R18-BN-ReLU_SGD/BASE/"

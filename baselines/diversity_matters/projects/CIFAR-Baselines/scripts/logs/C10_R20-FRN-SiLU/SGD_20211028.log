@@ -1,0 +1,12 @@
+Command Line Args: Namespace(config_file='./configs/C10_R20-FRN-SiLU/C10_R20-FRN-SiLU_SGD.yaml', weight_file='./outputs/C10_R20-FRN-SiLU/SGD_20211028/best_acc1.pth.tar', ensemble_size=1, ensemble_progress=False, opts=[])
+
+Standard metrics on test examples:
+  # Ens     ACC     NLL     ECE     ENT     KLD
+-------  ------  ------  ------  ------  ------
+      1  0.8477  0.5855  0.0899  0.1980  0.0000
+
+Calibrated metrics on test examples:
+  # Ens     ACC     NLL     ECE     ENT      TS
+-------  ------  ------  ------  ------  ------
+      1  0.8477  0.4974  0.0296  0.4876  1.5203
+

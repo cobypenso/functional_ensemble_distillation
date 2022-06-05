@@ -1,0 +1,14 @@
+Command Line Args: Namespace(config_file='./configs/C100_WRN28x10-BN-ReLU/C100_WRN28x10-BN-ReLU_Dropout.yaml', weight_file='./outputs/C100_WRN28x10-BN-ReLU/Dropout_20211017/best_acc1.pth.tar', ensemble_size=30, ensemble_progress=False, opts=[])
+
+Standard metrics on test examples:
+  # Ens     ACC     NLL     ECE     ENT     KLD
+-------  ------  ------  ------  ------  ------
+      1  0.7999  0.8358  0.0611  0.6636  0.0000
+     30  0.8024  0.8087  0.0523  0.6785  0.0299
+
+Calibrated metrics on test examples:
+  # Ens     ACC     NLL     ECE     ENT      TS
+-------  ------  ------  ------  ------  ------
+      1  0.7999  0.8263  0.0451  0.8510  1.1336
+     30  0.8024  0.8034  0.0421  0.8359  1.1109
+
